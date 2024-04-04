@@ -14,7 +14,6 @@ class mod_helloworld_mod_form extends moodleform_mod {
         $mform = $this->_form;
 
         $mform->addElement('header', 'general', get_string('general', 'form'));
-
         $mform->addElement('text', 'name', get_string('modulename', 'helloworld'));
         $mform->setType('name', PARAM_TEXT);
         $mform->addRule('name', null, 'required', null, 'client');
