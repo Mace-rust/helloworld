@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="mod/helloworld/db" VERSION="2023040100" COMMENT="XMLDB file for Helloworld module">
+    <TABLES>
+        <TABLE NAME="helloworld" COMMENT="Helloworld instance">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" COMMENT="Primary key"/>
+                <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" DEFAULT="" COMMENT="The name of the module"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" COMMENT="Primary key"/>
+            </KEYS>
+        </TABLE>
+    </TABLES>
+</XMLDB>
