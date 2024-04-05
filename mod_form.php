@@ -24,4 +24,13 @@ class mod_helloworld_mod_form extends moodleform_mod {
         //-------------------------------------------------------
         $this->add_action_buttons(); // кнопочки сохранить, отмена и тд.
     }
+
+    public function data_preprocessing(&$default_values) {
+        // Обработка данных перед отображением формы редактирования.
+    }
+
+    public function validation($data, $files) {
+        // Валидация данных формы перед сохранением.
+        return array();
+    }
 }

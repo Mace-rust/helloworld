@@ -4,22 +4,21 @@ declare(strict_types=1);
 defined('MOODLE_INTERNAL') || die;
 
 function xmldb_helloworld_upgrade($oldversion) {
-    global $CFG;
+    global $DB;
 
-    // Automatically generated Moodle v3.9.0 release upgrade line.
-    // Put any upgrade step following this.
+    $dbman = $DB->get_manager();
 
-    // Automatically generated Moodle v4.0.0 release upgrade line.
-    // Put any upgrade step following this.
+    if ($oldversion < 2024040500) {
 
-    // Automatically generated Moodle v4.1.0 release upgrade line.
-    // Put any upgrade step following this.
+        $table = new xmldb_table('helloworld');
+        $field = new xmldb_field('course', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0', 'name');
 
-    // Automatically generated Moodle v4.2.0 release upgrade line.
-    // Put any upgrade step following this.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
 
-    // Automatically generated Moodle v4.3.0 release upgrade line.
-    // Put any upgrade step following this.
+        upgrade_plugin_savepoint(true, 2024040500, 'mod', 'helloworld');
+    }
 
     return true;
 }
