@@ -42,7 +42,7 @@ $course = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST)
 
 // Вывод приветственного сообщения.
 echo $OUTPUT->header();
-echo $OUTPUT->heading(format_string($helloworld->name), 2);
+echo $OUTPUT->heading(format_string("ПРИВЕТ, МИР!!!! Спасибо папаша, что купил мне этот новый рено Логан чёрного цвета - 20го века"), 1);
 
 //if (trim(strip_tags($helloworld->intro))) {
 //    echo $OUTPUT->box_start('mod_introbox', 'pageintro');
