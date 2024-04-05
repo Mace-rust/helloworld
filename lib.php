@@ -25,17 +25,65 @@ function helloworld_supports($feature) {
     }
 }
 
-function helloworld_add_instance($helloworld) {
-    $helloworld->id = insert_record('helloworld', $helloworld);
-    return $helloworld->id;
+//function page_get_view_actions() {
+//    return array('view','view all');
+//}
+
+/**
+ * Add page instance.
+ * @param stdClass $data
+ * @param mod_helloworld_mod_form $mform
+ * @return int new helloworld instance id
+ */
+
+function helloworld_add_instance($data, $mform = null) {
+    global $CFG, $DB;
+
+    require_once("$CFG->libdir/resourcelib.php");
+
+    $cmid = $data->coursemodule;
+
+    $data->id = $DB->insert_record('helloworld', $data);
+
+
+    return $data->id;
 }
 
-function helloworld_update_instance($helloworld) {
-    $helloworld->id = $helloworld->instance;
-    update_record('helloworld', $helloworld);
-    return true;
-}
+/**
+ * Update page instance.
+ * @param object $data
+ * @param object $mform
+ * @return bool true
+ */
+function helloworld_update_instance($data, $mform) {
+    global $CFG, $DB;
 
+    require_once("$CFG->libdir/resourcelib.php");
+
+    $cmid        = $data->coursemodule;
+
+
+    $data->id           = $data->instance;
+    $DB->update_record('helloworld', $data);
+}
+/**
+ * Delete page instance.
+ * @param int $id
+ * @return bool true
+ */
 function helloworld_delete_instance($id) {
-    return delete_records('helloworld', 'id', $id);
+    global $DB;
+
+    if (!$helloworld = $DB->get_record('helloworld', array('id'=>$id))) {
+        return false;
+    }
+
+    $cm = get_coursemodule_from_instance('helloworld', $id);
+    \core_completion\api::update_completion_date_event($cm->id, 'helloworld', $id, null);
+
+    // note: all context files are deleted automatically
+
+    $DB->delete_records('helloworld', array('id'=>$helloworld->id));
+
+    return true;
 }
