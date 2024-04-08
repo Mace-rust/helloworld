@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-global $OUTPUT, $PAGE, $DB;
+global $OUTPUT, $DB;
 
 //defined('MOODLE_INTERNAL') || die();
 
@@ -14,7 +14,7 @@ $p = optional_param('helloworld', 0, PARAM_INT);  // Page instance ID
 //require_course_login();
 
 // Получение контекста модуля.
-$context = context_module::instance($id);
+//$context = context_module::instance($id); // переменная для проверки прав доступа
 
 // Проверка наличия необходимых прав для просмотра ресурса.
 //require_capability('mod/helloworld:view', $context);
@@ -42,12 +42,16 @@ $course = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST)
 
 // Вывод приветственного сообщения.
 echo $OUTPUT->header();
-echo $OUTPUT->heading(format_string("ПРИВЕТ, МИР!!!! Спасибо папаша, что купил мне этот новый рено Логан чёрного цвета - 20го века"), 1);
 
-//if (trim(strip_tags($helloworld->intro))) {
-//    echo $OUTPUT->box_start('mod_introbox', 'pageintro');
-//    echo format_module_intro('helloworld', helloworld, $cm->id);
-//    echo $OUTPUT->box_end();
-//}
+//echo $OUTPUT->heading(format_string("ПРИВЕТ, МИР!!!!"), 1);
+
+// HTML код для контейнера, центрирующего текст
+echo '<div style="text-align: center; position: absolute; top: 10%; left: 50%; transform: translate(-50%, -50%);">';
+
+// HTML код для текста
+echo '<h1>ПРИВЕТ, МИР!!!!</h1>';
+
+// Закрываем контейнер
+echo '</div>';
 
 echo $OUTPUT->footer();

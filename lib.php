@@ -78,8 +78,8 @@ function helloworld_delete_instance($id) {
         return false;
     }
 
-    $cm = get_coursemodule_from_instance('helloworld', $id);
-    \core_completion\api::update_completion_date_event($cm->id, 'helloworld', $id, null);
+//    $cm = get_coursemodule_from_instance('helloworld', $id); //обновляет дату о завершении активности
+//    \core_completion\api::update_completion_date_event($cm->id, 'helloworld', $id, null);
 
     // note: all context files are deleted automatically
 
