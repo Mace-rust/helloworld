@@ -20,20 +20,20 @@ $p = optional_param('helloworld', 0, PARAM_INT);  // Page instance ID
 //require_capability('mod/helloworld:view', $context);
 
 // Получение информации о ресурсе.
-if ($p) {
-    if (!$helloworld = $DB->get_record('helloworld', array('id' => $p))) {
-        print_error('invalidaccessparameter');
-    }
-    $cm = get_coursemodule_from_instance('helloworld', helloworld->id, helloworld->course, false, MUST_EXIST);
-} else {
-    if (!$cm = get_coursemodule_from_id('helloworld', $id)) {
-        print_error('invalidcoursemodule');
-    }
-    $helloworld = $DB->get_record('helloworld', array('id' => $cm->instance), '*', MUST_EXIST);
-}
+//if ($p) {
+//    if (!$helloworld = $DB->get_record('helloworld', array('id' => $p))) {
+//        print_error('invalidaccessparameter');
+//    }
+//    $cm = get_coursemodule_from_instance('helloworld', helloworld->id, helloworld->course, false, MUST_EXIST);
+//} else {
+//    if (!$cm = get_coursemodule_from_id('helloworld', $id)) {
+//        print_error('invalidcoursemodule');
+//    }
+//    $helloworld = $DB->get_record('helloworld', array('id' => $cm->instance), '*', MUST_EXIST);
+//}
 
 // Получение информации о курсе.
-$course = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST);
+//$course = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST);
 
 //// Установка заголовка страницы.
 //$helloworld->set_url('/mod/helloworld/view.php', array('id' => $id));

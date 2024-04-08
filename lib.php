@@ -14,10 +14,10 @@ function helloworld_supports($feature) {
         case FEATURE_GROUPS:                  return false;
         case FEATURE_GROUPINGS:               return false;
         case FEATURE_MOD_INTRO:               return false; //ввод инфы не поддерживаем
-        case FEATURE_COMPLETION_TRACKS_VIEWS: return true; //отслеживание просмотров
+        case FEATURE_COMPLETION_TRACKS_VIEWS: return false; //отслеживание просмотров
         case FEATURE_GRADE_HAS_GRADE:         return false;
         case FEATURE_GRADE_OUTCOMES:          return false;
-        case FEATURE_BACKUP_MOODLE2:          return true; // резервное копирование
+        case FEATURE_BACKUP_MOODLE2:          return false; // резервное копирование
         case FEATURE_SHOW_DESCRIPTION:        return true; // описание плагина
         //case FEATURE_MOD_PURPOSE:             return MOD_PURPOSE_CONTENT;
 
@@ -25,9 +25,9 @@ function helloworld_supports($feature) {
     }
 }
 
-//function page_get_view_actions() {
-//    return array('view','view all');
-//}
+function helloworld_get_post_actions() {
+    return array('update', 'add');
+}
 
 /**
  * Add page instance.
@@ -41,7 +41,6 @@ function helloworld_add_instance($data, $mform = null) {
 
     require_once("$CFG->libdir/resourcelib.php");
 
-    $cmid = $data->coursemodule;
 
     $data->id = $DB->insert_record('helloworld', $data);
 
@@ -61,11 +60,10 @@ function helloworld_update_instance($data, $mform) {
     require_once("$CFG->libdir/resourcelib.php");
 
     $cmid        = $data->coursemodule;
-
-
     $data->id           = $data->instance;
     $DB->update_record('helloworld', $data);
 }
+
 /**
  * Delete page instance.
  * @param int $id
@@ -78,10 +76,6 @@ function helloworld_delete_instance($id) {
         return false;
     }
 
-//    $cm = get_coursemodule_from_instance('helloworld', $id); //обновляет дату о завершении активности
-//    \core_completion\api::update_completion_date_event($cm->id, 'helloworld', $id, null);
-
-    // note: all context files are deleted automatically
 
     $DB->delete_records('helloworld', array('id'=>$helloworld->id));
 

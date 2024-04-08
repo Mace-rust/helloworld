@@ -1,19 +1,31 @@
 <?php
 declare(strict_types=1);
 
-global $PAGE, $OUTPUT;
-require_once(__DIR__ . '/../../config.php');
+global $PAGE, $OUTPUT, $DB, $CFG;
 
-// удостовериться, что пользователь залогинился (не обязательно)
-require_login();
+require('../../config.php');
 
-$PAGE->set_url('/mod/helloworld/index.php');
-$PAGE->set_context(context_system::instance());
-$PAGE->set_title(get_string('pluginname', 'mod_helloworld'));
-$PAGE->set_heading(get_string('pluginname', 'mod_helloworld'));
+$id = required_param('id', PARAM_INT); // course id
 
+$course = $DB->get_record('course', array('id'=>$id), '*', MUST_EXIST);
+
+require_course_login($course, true);
+
+$strpage         = get_string('modulename', 'helloworld');
+$strpages        = get_string('modulenameplural', 'helloworld');
+$strname         = get_string('name');
+$strintro        = get_string('moduleintro');
+$strlastmodified = get_string('lastmodified');
+
+$PAGE->set_pagelayout('incourse');
+$PAGE->set_url('/mod/helloworld/index.php', array('id' => $course->id));
+$PAGE->set_title($course->shortname.': '.$strpages);
+$PAGE->set_heading($course->fullname);
+
+$PAGE->navbar->add($strpages);
 echo $OUTPUT->header();
-
-echo '<div>Hello World!</div>';
-
-echo $OUTPUT->footer();
+echo $OUTPUT->heading($strpages);
+if (!$pages = get_all_instances_in_course('page', $course)) {
+    notice(get_string('thereareno', 'moodle', $strpages), "$CFG->wwwroot/course/view.php?id=$course->id");
+    exit;
+}
