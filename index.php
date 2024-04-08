@@ -25,7 +25,7 @@ $PAGE->set_heading($course->fullname);
 $PAGE->navbar->add($strpages);
 echo $OUTPUT->header();
 echo $OUTPUT->heading($strpages);
-if (!$pages = get_all_instances_in_course('page', $course)) {
+if (!$pages = get_all_instances_in_course('helloworld', $course)) {
     notice(get_string('thereareno', 'moodle', $strpages), "$CFG->wwwroot/course/view.php?id=$course->id");
     exit;
 }

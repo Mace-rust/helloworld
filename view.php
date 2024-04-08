@@ -1,14 +1,17 @@
 <?php
 declare(strict_types=1);
 
-global $OUTPUT, $DB;
+global $OUTPUT, $PAGE;
 
 //defined('MOODLE_INTERNAL') || die();
 
 require('../../config.php');
 
-$id = optional_param('id', 0, PARAM_INT); // Course Module ID
-$p = optional_param('helloworld', 0, PARAM_INT);  // Page instance ID
+$PAGE->set_title('Привет, Мир!');
+
+
+//$id = optional_param('id', 0, PARAM_INT); // Course Module ID
+//$p = optional_param('helloworld', 0, PARAM_INT);  // Page instance ID
 
 // Проверка, имеет ли текущий пользователь доступ к курсу.
 //require_course_login();
