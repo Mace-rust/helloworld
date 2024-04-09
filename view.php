@@ -6,7 +6,7 @@ global $OUTPUT, $PAGE;
 
 require('../../config.php');
 
-$PAGE->set_title('Привет, Мир!');
+//$PAGE->set_title('Привет, Мир!');
 
 // Вывод приветственного сообщения.
 echo $OUTPUT->header();

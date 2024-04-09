@@ -35,9 +35,6 @@ function helloworld_supports($feature)
     }
 }
 
-function helloworld_get_post_actions() {
-    return array('update', 'add');
-}
 
 /**
  * Add page instance.
@@ -46,14 +43,11 @@ function helloworld_get_post_actions() {
  * @return int new helloworld instance id
  */
 
-function helloworld_add_instance($data, $mform = null) {
+function helloworld_add_instance($data, $mform = null)
+{
     global $CFG, $DB;
 
-    require_once("$CFG->libdir/resourcelib.php");
-
-
     $data->id = $DB->insert_record('helloworld', $data);
-
 
     return $data->id;
 }
