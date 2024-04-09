@@ -86,3 +86,21 @@ function helloworld_delete_instance($id) {
     return true;
 }
 
+function helloworld_view($page, $course, $cm, $context) {
+
+    // Trigger course_module_viewed event.
+    $params = array(
+        'context' => $context,
+        'objectid' => $page->id
+    );
+
+    $event = \mod_helloworld\event\course_module_viewed::create($params);
+    $event->add_record_snapshot('course_modules', $cm);
+    $event->add_record_snapshot('course', $course);
+    $event->add_record_snapshot('helloworld', $page);
+    $event->trigger();
+
+    $completion = new completion_info($course);
+    $completion->set_module_viewed($cm); //Пометка модуля как просмотренного для учета завершения курса
+}
+
