@@ -2,17 +2,39 @@
 
 declare(strict_types=1);
 
-global $OUTPUT, $PAGE;
+global $DB, $PAGE, $OUTPUT;
+require __DIR__ . '/../../config.php'; // Путь к файлу конфигурации Moodle.
 
-require('../../config.php');
+$id = required_param('id', PARAM_INT); // Получение параметра из URL.
 
-//$PAGE->set_title('Привет, Мир!');
+// Получение объекта курса.
+$course = $DB->get_record('course', array('id' => $id), '*', MUST_EXIST);
 
-// Вывод приветственного сообщения.
+// Проверка прав доступа.
+require_course_login($course, true);
+
+// Установка макета страницы.
+$PAGE->set_pagelayout('incourse');
+
+// Установка контекста страницы.
+$context = context_course::instance($course->id);
+$PAGE->set_context($context);
+
+// Установка URL страницы.
+$PAGE->set_url('/mod/helloworld/view.php', array('id' => $course->id));
+
+// Установка заголовка страницы.
+$PAGE->set_title($course->shortname . ': ' . get_string('modulenameplural', 'helloworld'));
+
+// Установка хлебных крошек.
+$PAGE->navbar->add(get_string('modulenameplural', 'helloworld'));
+
+// Вывод шапки страницы.
 echo $OUTPUT->header();
 
-echo '<div style="text-align: center; position: absolute; top: 10%; left: 50%; transform: translate(-50%, -50%);">';
-echo '<h1>ПРИВЕТ, МИР!!!!</h1>';
-echo '</div>';
+// Вывод контента модуля.
 
+// ...
+
+// Вывод подвала страницы.
 echo $OUTPUT->footer();
