@@ -76,17 +76,17 @@ if (!empty($options['printintro'])) {
     }
 }
 
-$content = file_rewrite_pluginfile_urls($page->content, 'pluginfile.php', $context->id, 'mod_helloworld', 'content', $page->revision);
+//$content = file_rewrite_pluginfile_urls($page->content, 'pluginfile.php', $context->id, 'mod_helloworld', 'content', $page->revision);
 $formatoptions = new stdClass;
-$formatoptions->noclean = true;
-$formatoptions->overflowdiv = true;
-$formatoptions->context = $context;
-$content = format_text($content, $page->contentformat, $formatoptions);
-echo $OUTPUT->box($content, "generalbox center clearfix");
-
-if (!isset($options['printlastmodified']) || !empty($options['printlastmodified'])) {
-    $strlastmodified = get_string("lastmodified");
-    echo html_writer::div("$strlastmodified: " . userdate($page->timemodified), 'modified');
-}
+$formatoptions->noclean = true; // отключение очистки HTML-кода
+$formatoptions->overflowdiv = true; // переполнение, если содержимое не помещается в указанную область
+$formatoptions->context = $context; // чтобы применять соответствующие правила безопасности
+//$content = format_text($content, $page->contentformat, $formatoptions);
+//echo $OUTPUT->box($content, "generalbox center clearfix");
+//
+//if (!isset($options['printlastmodified']) || !empty($options['printlastmodified'])) {
+//    $strlastmodified = get_string("lastmodified");
+//    echo html_writer::div("$strlastmodified: " . userdate($page->timemodified), 'modified');
+//}
 
 echo $OUTPUT->footer();
