@@ -42,6 +42,7 @@ require_capability('mod/helloworld:view', $context); //непосредстве�
 // Completion and trigger events.
 helloworld_view($page, $course, $cm, $context);
 
+//установка заголовка страницы и ее оформления
 $PAGE->set_url('/mod/helloworld/view.php', array('id' => $cm->id));
 
 $options = empty($page->displayoptions) ? [] : (array) unserialize_array($page->displayoptions);
@@ -55,13 +56,14 @@ if ($inpopup and $page->display == RESOURCELIB_DISPLAY_POPUP) {
     $PAGE->set_heading($course->fullname);
     $PAGE->set_activity_record($page);
 }
+
 echo $OUTPUT->header();
 
 if (!isset($options['printheading']) || !empty($options['printheading'])) {
     echo $OUTPUT->heading(format_string($page->name), 2);
 }
 
-$userid = intval($USER->id); // Преобразуем идентификатор пользователя в целое число
+$userid = intval($USER->id); // user id to int
 // Display any activity information (eg completion requirements / dates).
 $cminfo = cm_info::create($cm);
 $completiondetails = \core_completion\cm_completion_details::get_instance($cminfo, $userid);
@@ -76,7 +78,6 @@ if (!empty($options['printintro'])) {
     }
 }
 
-//$content = file_rewrite_pluginfile_urls($page->content, 'pluginfile.php', $context->id, 'mod_helloworld', 'content', $page->revision);
 $formatoptions = new stdClass;
 $formatoptions->noclean = true; // отключение очистки HTML-кода
 $formatoptions->overflowdiv = true; // переполнение, если содержимое не помещается в указанную область
