@@ -45,7 +45,7 @@ function helloworld_supports($feature)
 
 function helloworld_add_instance($data, $mform = null)
 {
-    global $CFG, $DB;
+    global $DB;
 
     $data->id = $DB->insert_record('helloworld', $data);
 

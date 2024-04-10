@@ -21,8 +21,7 @@ $capabilities = array(
         'archetypes' => array(
             //только преподаватели + администраторы = разрешение на добавление новых экземпляров модуля
             'editingteacher' => CAP_ALLOW,
-            'manager' => CAP_ALLOW,
-            'student' => CAP_ALLOW, // добавил потому что может не было прав чтобы нажать кнопку о выполнении курса у студента
+            'manager' => CAP_ALLOW
         ),
         'clonepermissionsfrom' => 'moodle/course:manageactivities'
     ),
