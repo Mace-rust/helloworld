@@ -16,8 +16,6 @@ defined('MOODLE_INTERNAL') || die();
 //$strpage         = get_string('modulename', 'helloworld');
 //$strpages        = get_string('modulenameplural', 'helloworld');
 //$strname         = get_string('name');
-//$strintro        = get_string('moduleintro');
-//$strlastmodified = get_string('lastmodified');
 //
 //$PAGE->set_pagelayout('incourse');
 //$PAGE->set_url('/mod/helloworld/index.php', array('id' => $course->id));
@@ -27,7 +25,7 @@ defined('MOODLE_INTERNAL') || die();
 //$PAGE->navbar->add($strpages);
 //echo $OUTPUT->header();
 //echo $OUTPUT->heading($strpages);
-////if (!$pages = get_all_instances_in_course('helloworld', $course)) {
+//if (!$pages = get_all_instances_in_course('helloworld', $course)) {
 //    notice(get_string('thereareno', 'moodle', $strpages), "$CFG->wwwroot/course/view.php?id=$course->id");
 //    exit;
 //}
