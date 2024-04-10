@@ -39,7 +39,7 @@ require_capability('mod/helloworld:view', $context); //непосредстве�
 
 
 
-// Completion and trigger events.
+// События завершения и запуска.
 helloworld_view($page, $course, $cm, $context);
 
 //установка заголовка страницы и ее оформления
@@ -68,19 +68,11 @@ $userid = intval($USER->id); // user id to int
 $cminfo = cm_info::create($cm);
 $completiondetails = \core_completion\cm_completion_details::get_instance($cminfo, $userid);
 $activitydates = \core\activity_dates::get_dates_for_module($cminfo, $userid);
-echo $OUTPUT->activity_information($cminfo, $completiondetails, $activitydates);
+echo $OUTPUT->activity_information($cminfo, $completiondetails, $activitydates); // непосредственно кнопка выполненности
 
-if (!empty($options['printintro'])) {
-    if (trim(strip_tags($page->intro))) {
-        echo $OUTPUT->box_start('mod_introbox', 'pageintro');
-        echo format_module_intro('helloworld', $page, $cm->id);
-        echo $OUTPUT->box_end();
-    }
-}
-
-$formatoptions = new stdClass;
-$formatoptions->noclean = true; // отключение очистки HTML-кода
-$formatoptions->overflowdiv = true; // переполнение, если содержимое не помещается в указанную область
-$formatoptions->context = $context; // чтобы применять соответствующие правила безопасности
+//$formatoptions = new stdClass;
+//$formatoptions->noclean = true; // отключение очистки HTML-кода
+//$formatoptions->overflowdiv = true; // переполнение, если содержимое не помещается в указанную область
+//$formatoptions->context = $context; // чтобы применять соответствующие правила безопасности
 
 echo $OUTPUT->footer();
