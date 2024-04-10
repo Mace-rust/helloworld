@@ -52,6 +52,11 @@ function helloworld_add_instance($data, $mform = null)
     return $data->id;
 }
 
+function helloworld_get_editor_options($context) {
+    global $CFG;
+    return array('subdirs'=>1, 'maxbytes'=>$CFG->maxbytes, 'maxfiles'=>-1, 'changeformat'=>1, 'context'=>$context, 'noclean'=>1, 'trusttext'=>0);
+}
+
 /**
  * Update page instance.
  * @param object $data
@@ -60,12 +65,41 @@ function helloworld_add_instance($data, $mform = null)
  */
 function helloworld_update_instance($data, $mform) {
     global $CFG, $DB;
-
     require_once("$CFG->libdir/resourcelib.php");
 
     $cmid        = $data->coursemodule;
+//    $draftitemid = $data->page['itemid'];
+
+//    $data->timemodified = time();
     $data->id           = $data->instance;
+//    $data->revision++;
+
+//    $displayoptions = array();
+//    //  проверка, является ли выбранный способ popup
+//    if ($data->display == RESOURCELIB_DISPLAY_POPUP) {
+//        $displayoptions['popupwidth']  = $data->popupwidth;
+//        $displayoptions['popupheight'] = $data->popupheight;
+//    }
+//    $displayoptions['printheading'] = $data->printheading;
+//    $displayoptions['printintro']   = $data->printintro;
+//    $displayoptions['printlastmodified'] = $data->printlastmodified;
+//    $data->displayoptions = serialize($displayoptions);
+
+//    $data->content       = $data->page['text'];
+//    $data->contentformat = $data->page['format'];
+
     $DB->update_record('helloworld', $data);
+
+ //   $context = context_module::instance($cmid);
+ //   if ($draftitemid) {
+//        $data->content = file_save_draft_area_files($draftitemid, $context->id, 'mod_helloworld', 'content', 0, helloworld_get_editor_options($context), $data->content);
+ //       $DB->update_record('helloworld', $data);
+//    }
+
+    $completiontimeexpected = !empty($data->completionexpected) ? $data->completionexpected : null;
+    \core_completion\api::update_completion_date_event($cmid, 'helloworld', $data->id, $completiontimeexpected);
+
+    return true;
 }
 
 /**

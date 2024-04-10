@@ -24,5 +24,31 @@ class mod_helloworld_mod_form extends moodleform_mod {
         $this->add_action_buttons(); // кнопочки сохранить, отмена и тд.
 
     }
-
+//    public function data_preprocessing(&$defaultvalues) {
+//        if ($this->current->instance) {
+//            $draftitemid = file_get_submitted_draft_itemid('helloworld');
+//            $defaultvalues['helloworld']['format'] = $defaultvalues['contentformat'];
+//            $defaultvalues['helloworld']['text']   = file_prepare_draft_area($draftitemid, $this->context->id, 'mod_helloworld',
+//                'content', 0, page_get_editor_options($this->context), $defaultvalues['content']); // функция из локаллиба page
+//            $defaultvalues['helloworld']['itemid'] = $draftitemid;
+//        }
+//        if (!empty($defaultvalues['displayoptions'])) {
+//            $displayoptions = (array) unserialize_array($defaultvalues['displayoptions']);
+//            if (isset($displayoptions['printintro'])) {
+//                $defaultvalues['printintro'] = $displayoptions['printintro'];
+//            }
+//            if (isset($displayoptions['printheading'])) {
+//                $defaultvalues['printheading'] = $displayoptions['printheading'];
+//            }
+//            if (isset($displayoptions['printlastmodified'])) {
+//                $defaultvalues['printlastmodified'] = $displayoptions['printlastmodified'];
+//            }
+//            if (!empty($displayoptions['popupwidth'])) {
+//                $defaultvalues['popupwidth'] = $displayoptions['popupwidth'];
+//            }
+//            if (!empty($displayoptions['popupheight'])) {
+//                $defaultvalues['popupheight'] = $displayoptions['popupheight'];
+//            }
+//        }
+//    }
 }
