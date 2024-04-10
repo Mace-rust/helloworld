@@ -56,6 +56,7 @@ if ($inpopup and $page->display == RESOURCELIB_DISPLAY_POPUP) {
     $PAGE->set_activity_record($page);
 }
 echo $OUTPUT->header();
+
 if (!isset($options['printheading']) || !empty($options['printheading'])) {
     echo $OUTPUT->heading(format_string($page->name), 2);
 }
@@ -70,12 +71,12 @@ echo $OUTPUT->activity_information($cminfo, $completiondetails, $activitydates);
 if (!empty($options['printintro'])) {
     if (trim(strip_tags($page->intro))) {
         echo $OUTPUT->box_start('mod_introbox', 'pageintro');
-        echo format_module_intro('page', $page, $cm->id);
+        echo format_module_intro('helloworld', $page, $cm->id);
         echo $OUTPUT->box_end();
     }
 }
 
-$content = file_rewrite_pluginfile_urls($page->content, 'pluginfile.php', $context->id, 'mod_page', 'content', $page->revision);
+$content = file_rewrite_pluginfile_urls($page->content, 'pluginfile.php', $context->id, 'mod_helloworld', 'content', $page->revision);
 $formatoptions = new stdClass;
 $formatoptions->noclean = true;
 $formatoptions->overflowdiv = true;
