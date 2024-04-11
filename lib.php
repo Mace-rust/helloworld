@@ -65,17 +65,12 @@ function helloworld_get_editor_options($context) {
  */
 function helloworld_update_instance($data, $mform) {
     global $CFG, $DB;
+
     require_once("$CFG->libdir/resourcelib.php");
 
-    $cmid = $data->coursemodule;
-
-    $data->id = $data->instance;
+    $cmid        = $data->coursemodule;
+    $data->id           = $data->instance;
     $DB->update_record('helloworld', $data);
-
-    $completiontimeexpected = !empty($data->completionexpected) ? $data->completionexpected : null;
-    \core_completion\api::update_completion_date_event($cmid, 'helloworld', $data->id, $completiontimeexpected);
-
-    return true;
 }
 
 /**
