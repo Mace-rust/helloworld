@@ -14,7 +14,7 @@ $capabilities = array(
     ),
 
     'mod/helloworld:addinstance' => array(
-        'riskbitmask' => RISK_XSS, // уязвимость к XSS атакам
+
 
         'captype' => 'write',
         'contextlevel' => CONTEXT_COURSE,  // разрешение применяется на уровне курса

@@ -36,13 +36,6 @@ function helloworld_supports($feature)
 }
 
 
-/**
- * Add page instance.
- * @param stdClass $data
- * @param mod_helloworld_mod_form $mform
- * @return int new helloworld instance id
- */
-
 function helloworld_add_instance($data, $mform = null)
 {
     global $DB;
@@ -52,12 +45,7 @@ function helloworld_add_instance($data, $mform = null)
     return $data->id;
 }
 
-/**
- * Update page instance.
- * @param object $data
- * @param object $mform
- * @return bool true
- */
+
 function helloworld_update_instance($data, $mform)
 {
     global $DB;
@@ -68,11 +56,7 @@ function helloworld_update_instance($data, $mform)
     return true;
 }
 
-/**
- * Delete page instance.
- * @param int $id
- * @return bool true
- */
+
 function helloworld_delete_instance($id)
 {
     global $DB;
@@ -87,21 +71,20 @@ function helloworld_delete_instance($id)
     return true;
 }
 
-function helloworld_view($page, $course, $cm, $context)
-{
-    // Trigger course_module_viewed event.
-    $params = array(
-        'context' => $context,
-        'objectid' => $page->id
-    );
-
-    $event = \mod_helloworld\event\course_module_viewed::create($params);
-    $event->add_record_snapshot('course_modules', $cm);
-    $event->add_record_snapshot('course', $course);
-    $event->add_record_snapshot('helloworld', $page);
-    $event->trigger();
-
-    $completion = new completion_info($course);
-    $completion->set_module_viewed($cm); //Пометка модуля как просмотренного для учета завершения курса
-}
-
+//function helloworld_view($page, $course, $cm, $context)
+//{
+//    // Trigger course_module_viewed event.
+//    $params = array(
+//        'context' => $context,
+//        'objectid' => $page->id
+//    );
+//
+//    $event = \mod_helloworld\event\course_module_viewed::create($params);
+//    $event->add_record_snapshot('course_modules', $cm);
+//    $event->add_record_snapshot('course', $course);
+//    $event->add_record_snapshot('helloworld', $page);
+//    $event->trigger();
+//
+//    $completion = new completion_info($course);
+//    $completion->set_module_viewed($cm); //Пометка модуля как просмотренного для учета завершения курса
+//}

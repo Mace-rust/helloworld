@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-global $DB, $PAGE, $CFG, $OUTPUT, $USER;
+global $DB, $PAGE, $OUTPUT, $USER;
 
-require __DIR__ . '/../../config.php'; // настройки Mdl + DB
-require_once __DIR__ . '/../../mod/helloworld/lib.php'; // функции и классы для работы с модулем
-require_once __DIR__ . '/../../lib/completionlib.php'; // завершение заданий
+require __DIR__ . '/../../config.php'; // инициализирует соединение с базой данных
+//require_once __DIR__ . '/../../mod/helloworld/lib.php'; // функции и классы для работы с модулем
+//require_once __DIR__ . '/../../lib/completionlib.php'; // завершение заданий
 
 $id = optional_param('id', 0, PARAM_INT); // идентификатор модуля курса
 $p = optional_param('p', 0, PARAM_INT);  // идентификатор экземпляра страницы
-$inpopup = optional_param('inpopup', 0, PARAM_BOOL); //открыт ли модуль во всплывающем окне.
+//$inpopup = optional_param('inpopup', 0, PARAM_BOOL); //открыт ли модуль во всплывающем окне. ???
 
 if ($p) {
     if (!$page = $DB->get_record('helloworld', array('id' => $p))) {
@@ -39,25 +39,22 @@ require_capability('mod/helloworld:view', $context); //непосредстве�
 
 
 // События завершения и запуска.
-helloworld_view($page, $course, $cm, $context);
+//helloworld_view($page, $course, $cm, $context);
 
 //установка заголовка страницы и ее оформления
 $PAGE->set_url('/mod/helloworld/view.php', array('id' => $cm->id));
 
-$options = empty($page->displayoptions) ? [] : (array)unserialize_array($page->displayoptions);
+//$options = empty($page->displayoptions) ? [] : (array)unserialize_array($page->displayoptions);
 
-if ($inpopup and $page->display == RESOURCELIB_DISPLAY_POPUP) {
-    $PAGE->set_pagelayout('popup');
-    $PAGE->set_title($course->shortname . ': ' . $page->name);
-    $PAGE->set_heading($course->fullname);
-} else {
-    $PAGE->set_title($course->shortname . ': ' . $page->name);
-    $PAGE->set_heading($course->fullname);
-    $PAGE->set_activity_record($page);
-}
+// текст вкладки и КомСтр
+$PAGE->set_title($course->shortname . ': ' . $page->name);
+$PAGE->set_heading($course->fullname);
+$PAGE->set_activity_record($page);
+
 
 echo $OUTPUT->header();
 
+// Если не существует или если значение не пустое, то выполняется вывод заголовка страницы
 if (!isset($options['printheading']) || !empty($options['printheading'])) {
     echo $OUTPUT->heading(format_string($page->name), 2);
 }

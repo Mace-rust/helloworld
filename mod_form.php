@@ -1,11 +1,10 @@
 <?php
 declare(strict_types=1);
-global $CFG;
 
 defined('MOODLE_INTERNAL') || die();
 
 require_once __DIR__ . '/../../course/moodleform_mod.php'; // используется для создания форм настроек
-require_once __DIR__ . '/../../lib/filelib.php'; // функции для работы с файлами Moodle
+//require_once __DIR__ . '/../../lib/filelib.php'; // функции для работы с файлами Moodle
 
 class mod_helloworld_mod_form extends moodleform_mod
 {
