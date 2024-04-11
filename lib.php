@@ -58,10 +58,11 @@ function helloworld_add_instance($data, $mform = null)
  * @param object $mform
  * @return bool true
  */
-function helloworld_update_instance($data, $mform) {
+function helloworld_update_instance($data, $mform)
+{
     global $DB;
 
-    $data->id           = $data->instance;
+    $data->id = $data->instance;
     $DB->update_record('helloworld', $data);
 
     return true;
@@ -72,21 +73,22 @@ function helloworld_update_instance($data, $mform) {
  * @param int $id
  * @return bool true
  */
-function helloworld_delete_instance($id) {
+function helloworld_delete_instance($id)
+{
     global $DB;
 
-    if (!$helloworld = $DB->get_record('helloworld', array('id'=>$id))) {
+    if (!$helloworld = $DB->get_record('helloworld', array('id' => $id))) {
         return false;
     }
 
 
-    $DB->delete_records('helloworld', array('id'=>$helloworld->id));
+    $DB->delete_records('helloworld', array('id' => $helloworld->id));
 
     return true;
 }
 
-function helloworld_view($page, $course, $cm, $context) {
-
+function helloworld_view($page, $course, $cm, $context)
+{
     // Trigger course_module_viewed event.
     $params = array(
         'context' => $context,
