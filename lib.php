@@ -52,11 +52,6 @@ function helloworld_add_instance($data, $mform = null)
     return $data->id;
 }
 
-function helloworld_get_editor_options($context) {
-    global $CFG;
-    return array('subdirs'=>1, 'maxbytes'=>$CFG->maxbytes, 'maxfiles'=>-1, 'changeformat'=>1, 'context'=>$context, 'noclean'=>1, 'trusttext'=>0);
-}
-
 /**
  * Update page instance.
  * @param object $data
@@ -64,13 +59,12 @@ function helloworld_get_editor_options($context) {
  * @return bool true
  */
 function helloworld_update_instance($data, $mform) {
-    global $CFG, $DB;
+    global $DB;
 
-    require_once("$CFG->libdir/resourcelib.php");
-
-    $cmid        = $data->coursemodule;
     $data->id           = $data->instance;
     $DB->update_record('helloworld', $data);
+
+    return true;
 }
 
 /**
