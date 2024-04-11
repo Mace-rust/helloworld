@@ -5,5 +5,5 @@ defined('MOODLE_INTERNAL') || die();
 
 /** @var stdClass $plugin */
 $plugin->component = 'mod_helloworld';
-$plugin->version = 2024041102;
+$plugin->version = 2024041103;
 $plugin->requires = 2021051700; // Moodle 3.11

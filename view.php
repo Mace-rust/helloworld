@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 global $DB, $PAGE, $CFG, $OUTPUT, $USER;
 
-require __DIR__ . '/../../config.php';
-require_once($CFG->dirroot.'/mod/helloworld/lib.php');
-require_once($CFG->libdir.'/completionlib.php');
+require __DIR__ . '/../../config.php'; // настройки Mdl + DB
+require_once($CFG->dirroot.'/mod/helloworld/lib.php'); // функции и классы для работы с модулем
+require_once($CFG->libdir.'/completionlib.php'); // завершение заданий
 
 $id      = optional_param('id', 0, PARAM_INT); // идентификатор модуля курса
 $p       = optional_param('p', 0, PARAM_INT);  // идентификатор экземпляра страницы
@@ -16,7 +16,7 @@ if ($p) {
     if (!$page = $DB->get_record('helloworld', array('id' => $p))) {
         print_error('invalidaccessparameter');
     }
-    //информации о курсе и модуле курса на основе найденной записи helloworld
+    //информация о курсе и модуле курса на основе записи helloworld
     $cm = get_coursemodule_from_instance('helloworld', $page->id, $page->course, false, MUST_EXIST);
 
 } else {

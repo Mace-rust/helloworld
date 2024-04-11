@@ -4,8 +4,8 @@ global $CFG;
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once($CFG->dirroot.'/course/moodleform_mod.php');
-require_once($CFG->libdir.'/filelib.php');
+require_once($CFG->dirroot.'/course/moodleform_mod.php'); // используется для создания форм настроек
+require_once($CFG->libdir.'/filelib.php'); // функции для работы с файлами Moodle
 
 class mod_helloworld_mod_form extends moodleform_mod {
 
